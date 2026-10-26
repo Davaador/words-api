@@ -14,15 +14,18 @@ public class Word {
 
     private String en;
     private String mn;
+    private String category;
 
     protected Word() {}
 
-    public Word(String en, String mn) {
+    public Word(String en, String mn, String category) {
         this.en = en;
         this.mn = mn;
+        this.category = category;
     }
 
     public Long getId() { return id; }
     public String getEn() { return en; }
     public String getMn() { return mn; }
+    public String getCategory() {return  category;}
 }
