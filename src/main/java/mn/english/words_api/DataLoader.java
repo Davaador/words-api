@@ -14,7 +14,6 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        repository.deleteAll();
         if (repository.count() == 0) {
             add("web", "tag", "шошго", "page", "хуудас", "button", "товч",
                "file", "файл", "browser", "хөтөч");
