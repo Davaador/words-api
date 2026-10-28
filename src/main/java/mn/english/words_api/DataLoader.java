@@ -34,6 +34,25 @@ public class DataLoader implements CommandLineRunner {
             add("devops", "deploy", "байршуулах", "commit", "хадгалалт", "repository", "хадгалах сан",
                     "install", "суулгах", "offline", "интернэтгүй");
         }
+        for (Word w: repository.findAll()) {
+            if(w.getLevel() == null) {
+                w.setLevel(levelFor(w.getCategory()));
+                repository.save(w);
+            }
+
+            
+        }
+    }
+
+    private String levelFor(String category) {
+        if(category == null)
+            return "easy";
+        return switch(category) {
+            case "web", "css", "javascript" -> "easy";
+            case "dom", "debugging", "logic", "app" -> "medium";
+            case "code", "devops" -> "hard";
+            default -> "easy";
+        };
     }
 
     private void add(String category, String... pairs) {

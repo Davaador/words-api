@@ -44,7 +44,8 @@ public class WordController {
         if(body.en() == null || body.en().isBlank() || body.mn() == null || body.mn().isBlank()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
-
-        return repository.save(new Word(body.en(), body.mn(), body.category()));
+        Word word = new Word(body.en(), body.mn(), body.category());
+        word.setLevel(body.level() == null ? "easy" : body.level());
+        return repository.save(word);
     }
 }

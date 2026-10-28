@@ -15,6 +15,7 @@ public class Word {
     private String en;
     private String mn;
     private String category;
+    private String level;
 
     protected Word() {}
 
@@ -28,4 +29,9 @@ public class Word {
     public String getEn() { return en; }
     public String getMn() { return mn; }
     public String getCategory() {return  category;}
+    public String getLevel() { return level; };
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
 }
