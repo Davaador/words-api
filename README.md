@@ -8,6 +8,7 @@ Built with Spring Boot and PostgreSQL.
 - Filter by category: `GET /api/words?category=css`
 - Add a word (admin only): `POST /api/words`
 - Each word has a category and a level (easy, medium, hard)
+- Check English sentences with AI: `POST /api/check`
 
 ## Tech stack
 - Java 21, Spring Boot, Spring Data JPA
@@ -26,6 +27,7 @@ Then open http://localhost:8080/api/words
 | `DB_USER` | Database username |
 | `DB_PASSWORD` | Database password |
 | `ADMIN_KEY` | Secret key for the POST endpoint |
+| `ANTHROPIC_API_KEY` | Claude API key (used only on the server) |
 
 ## Example response
     [
@@ -36,3 +38,20 @@ Then open http://localhost:8080/api/words
 ## Clients
 - PWA (HTML, CSS, JavaScript)
 - Flutter app (Android)
+
+## AI sentence checker
+`POST /api/check` checks an English sentence with the Claude API.
+
+Request:
+
+    { "sentence": "My app run on my phone." }
+
+Response:
+
+    { "feedback": "Corrected: My app runs on my phone.\nWhy: ...\nМонгол: ..." }
+
+Safety:
+- The API key is stored in an environment variable, never in the code.
+- Rate limit: 5 requests per minute per IP and 500 requests per day in total.
+- A sentence can have at most 300 characters.
+- The system prompt asks the model to treat the sentence only as text to check.
