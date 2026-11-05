@@ -55,3 +55,5 @@ Safety:
 - Rate limit: 5 requests per minute per IP and 500 requests per day in total.
 - A sentence can have at most 300 characters.
 - The system prompt asks the model to treat the sentence only as text to check.
+
+![Java CI](https://github.com/Davaador/words-api/actions/workflows/ci.yml/badge.svg)
